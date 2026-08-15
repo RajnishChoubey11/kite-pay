@@ -10,7 +10,7 @@ import {
 
 export const SOLANA_DEVNET_URL = clusterApiUrl("devnet");
 export const KITEPAY_TREASURY_PUBLIC_KEY = new PublicKey(
-  process.env.NEXT_PUBLIC_KITEPAY_TREASURY_PUBLIC_KEY || "3XTXnX8XyyiKAjC1dgtLXPExihjqPVVmfcfPQPYQ4AZE"
+  process.env.KITEPAY_TREASURY_PUBLIC_KEY || "3XTXnX8XyyiKAjC1dgtLXPExihjqPVVmfcfPQPYQ4AZE"
 );
 
 
@@ -22,7 +22,7 @@ export const USDC_DEVNET_MINTS = [
 ];
 
 export const USDC_DEVNET_MINT = new PublicKey(
-  process.env.NEXT_PUBLIC_USDC_MINT || USDC_DEVNET_MINTS[0]
+  process.env.USDC_MINT || USDC_DEVNET_MINTS[0]
 );
 
 export const USDC_DECIMALS = 6;
@@ -140,8 +140,7 @@ export async function transferUsdcPayrollBatch(
 
   if (Number(sourceBalance.value.amount) < totalAmountBaseUnits) {
     throw new Error(
-      `Insufficient USDC balance. Required ${totalAmountUsd.toFixed(6)} USDC, but source has ${
-        Number(sourceBalance.value.amount) / 10 ** USDC_DECIMALS
+      `Insufficient USDC balance. Required ${totalAmountUsd.toFixed(6)} USDC, but source has ${Number(sourceBalance.value.amount) / 10 ** USDC_DECIMALS
       } USDC.`
     );
   }
